@@ -1,5 +1,5 @@
 #include <stdint.h>
-
+#include<stdio.h>
 uint64_t bintran(uint32_t a){
   uint64_t k=0;                     //记录2的mici
   while(a>=(1<<k)){
@@ -20,10 +20,10 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t k;
   while(y>0){
     k=bintran(y);
-    printf("%d",k);
+    printf("%ld",k);
     y=y-(1<<k);
     result+=mod(x<<k,m);
-    printf("%d",result);
+    printf("%ld",result);
   }
   
   return result;
