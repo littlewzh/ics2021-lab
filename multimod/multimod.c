@@ -20,10 +20,10 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t k;
   while(y>0){
     k=bintran(y);
-    printf("%llu",k);
+    printf("%lu",k);
     y=y-(1<<k);
     result+=mod(x<<k,m);
-    printf("%llu",result);
+    printf("%lu",result);
   }
   
   return result;
