@@ -32,7 +32,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   while(b>0){
     k=bintran(b);
     uint64_t sub=(1<<k);
-    b-=sub;
+    b=b^sub;
     if((l+k)<64){
       result=mod(result,a<<k,m);
     }
