@@ -18,7 +18,10 @@ uint64_t mod(uint64_t x,uint64_t y,uint64_t m){
   if(s<x){                       //此时发生了溢出
     mod(s+1,-1,m);
   }
-  return x;
+else {
+  while(s>=m) {s=s-m;}
+ }
+  return s;
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t x=a<b?a:b,y=a>b?a:b;
