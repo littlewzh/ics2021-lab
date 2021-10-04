@@ -16,7 +16,7 @@ uint64_t mod(uint64_t x,uint64_t y,uint64_t m){
    }
   uint64_t s=x+y;
   if(s<x){                       //此时发生了溢出
-    mod(s+1,(1<<64)-1,m);
+    mod(s+1,-1,m);
   }
   return x;
 }
@@ -38,7 +38,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       uint64_t presult=mod(x,0,m);
       //result=mod(result,x,m);
       for(int i=0;i<=s;i++){
-        if((presult>>(63-i)&)1) {presult=mod((presult<<1)+1,(1<<64)-1,m);}
+        if((presult>>(63-i))&1) {presult=mod((presult<<1)+1,-1,m);}
         else {continue;}
       }
       result=mod(result,presult,m);
