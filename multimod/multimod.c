@@ -40,10 +40,8 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       result=mod(result,x<<k,m);
     }
     else {
-      int s=(k+l)-64;
-      uint64_t presult=mod(x<<(63-l),0,m);
-      //result=mod(result,x,m);
-      for(int i=0;i<=s;i++){
+      uint64_t presult=a;
+      for(int i=0;i<k;i++){
           presult=mod(presult,presult,m);
       }
       result=mod(result,presult,m);
