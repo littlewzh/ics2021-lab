@@ -25,21 +25,19 @@ else {
   return s;
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
-  uint64_t x=a;
-  uint64_t y=b;
   uint64_t result=0;
   uint64_t k=0;
   uint64_t l=0;
-  l=bintran(x); 
-  while(y>0){
-    k=bintran(y);
+  l=bintran(a); 
+  while(b>0){
+    k=bintran(b);
     uint64_t sub=(1<<k);
-    y-=sub;
+    b-=sub;
     if((l+k)<64){
-      result=mod(result,x<<k,m);
+      result=mod(result,a<<k,m);
     }
     else {
-      uint64_t presult=x;
+      uint64_t presult=a;
       for(int i=0;i<k;i++){
           presult=mod(presult,presult,m);
       }
