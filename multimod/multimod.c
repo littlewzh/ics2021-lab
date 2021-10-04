@@ -1,9 +1,9 @@
 #include <stdint.h>
 #include<stdio.h>
-uint64_t bintran(uint64_t z){
+int bintran(uint64_t z){
 
-  uint64_t k=0;
-  uint64_t n=1;                     //记录2的mici
+  int k=0;
+  int n=1;                     //记录2的mici
   while((z>=(n<<k))&&k<64){
     k++;
   }
@@ -27,8 +27,8 @@ else {
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t result=0;
-  uint64_t k=0;
-  uint64_t l=0;
+  int k=0;
+  int l=0;
   l=bintran(a); 
   while(b>0){
     k=bintran(b);
@@ -38,9 +38,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       result=mod(result,a<<k,m);
     }
     else {
-      uint64_t s=k+l-64;
+      int s=k+l-64;
       uint64_t presult=mod(a<<(63-l),0,m);
-      for(uint64_t i=0;i<=s;i++){
+      for(int i=0;i<=s;i++){
           if((presult>>63)&1) {presult=mod((presult<<1)+1,-1ULL,m);}
           else {presult=presult<<1;}
       }
