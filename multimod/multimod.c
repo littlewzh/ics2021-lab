@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include<stdio.h>
-int bin[128];
 uint64_t bintran(uint64_t z){
 
   uint64_t k=0;                     //记录2的mici
