@@ -26,10 +26,11 @@ else {
   return s;
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
-  uint64_t x=a<b?a:b,y=a>b?a:b;
+  uint64_t x=a;
+  uint64_t y=b;
   
   uint64_t result=0;
-  int k,l;
+  uint64_t k,l;
   while(y>0){
     k=bintran(y);
     y=y-(1<<k);
@@ -45,7 +46,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
         if((presult>>(63-i))&1) {presult=mod((presult<<1)+1,-1,m);}
         else {continue;}
       }
-      result=mod(result,presult,m);
+      result=mod(result,presult,m);=]
     }
 
   }
