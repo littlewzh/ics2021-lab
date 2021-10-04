@@ -44,8 +44,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       uint64_t presult=mod(x<<(63-l),0,m);
       //result=mod(result,x,m);
       for(int i=0;i<=s;i++){
-        if(((presult>>63)&&1)==1) {presult=mod((presult<<1)+1,-1ULL,m);}
-        else {presult=(presult<<1);}
+          presult=mod(presult,presult,m);
       }
       result=mod(result,presult,m);
     }
