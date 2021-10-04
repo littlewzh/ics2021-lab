@@ -40,7 +40,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     }
     else {
       uint64_t presult=a;
-      for(uint64_t i=0;i<k-1;i++){
+      for(uint64_t i=0;i<k;i++){
           presult=mod(presult,presult,m);
       }
       result=mod(presult,result,m);
