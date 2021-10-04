@@ -1,10 +1,10 @@
 #include <stdint.h>
 #include<stdio.h>
 int bin[128];
-uint64_t bintran(uint64_t a){
+uint64_t bintran(uint64_t z){
 
   uint64_t k=0;                     //记录2的mici
-  while((a>=(1<<k))&&k<64){
+  while((z>=(1<<k))&&k<64){
     k++;
   }
   return k-1; 
@@ -28,14 +28,14 @@ else {
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t x=a;
   uint64_t y=b;
-  
   uint64_t result=0;
-  uint64_t k,l;
+  uint64_t k=0;
+  uint64_t l=0;
+  l=bintran(x); 
   while(y>0){
     k=bintran(y);
     uint64_t sub=1<<k;
     y=y-sub;
-    l=bintran(x);
     if((l+k)<64){
       result=mod(result,x<<k,m);
     }
