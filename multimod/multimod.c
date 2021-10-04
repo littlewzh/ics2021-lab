@@ -17,7 +17,7 @@ uint64_t mod(uint64_t x,uint64_t y,uint64_t m){
      y=y-m;
    }
   uint64_t s=x+y;
-  if(x>-1ULL-y){                       //此时发生了溢出
+  if(x>(-1ULL-y)){                       //此时发生了溢出
     mod(s+1,-1ULL,m);
   }
 else {
