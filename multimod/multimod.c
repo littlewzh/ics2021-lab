@@ -19,12 +19,13 @@ uint64_t mod(uint64_t x,uint64_t y,uint64_t m){
   uint64_t s=x+y;
   uint64_t o=1;
   if(x>(-1ULL-y)){                       //此时发生了溢出
-    mod(s+o,-1ULL,m);
+    return mod(s+o,-1ULL,m);
   }
 else {
   while(s>=m) {s=s-m;}
- }
+ 
   return s;
+}
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t result=0;
