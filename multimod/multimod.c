@@ -4,7 +4,7 @@ int bin[128];
 uint64_t bintran(uint64_t a){
 
   uint64_t k=0;                     //记录2的mici
-  while((a>=(1<<k))&&k<=64){
+  while((a>=(1<<k))&&k<64){
     k++;
   }
   return k-1; 
