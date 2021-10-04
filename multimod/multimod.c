@@ -2,8 +2,9 @@
 #include<stdio.h>
 uint64_t bintran(uint64_t z){
 
-  uint64_t k=0;                     //记录2的mici
-  while((z>=(1<<k))&&k<64){
+  uint64_t k=0;
+  uint64_t n=1;                     //记录2的mici
+  while((z>=(n<<k))&&k<64){
     k++;
   }
   return k-1; 
