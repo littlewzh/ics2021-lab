@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include<stdio.h>
 int bin[128];
-uint64_t bintran(uint32_t a){
+uint64_t bintran(uint64_t a){
 
   uint64_t k=0;                     //记录2的mici
   while((a>=(1<<k))&&k<=64){
