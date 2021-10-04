@@ -34,12 +34,12 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   while(y>0){
     k=bintran(y);
     uint64_t sub=(1<<k);
-    y=y-sub;
+    y-=sub;
     if((l+k)<64){
       result=mod(result,x<<k,m);
     }
     else {
-      uint64_t presult=a;
+      uint64_t presult=x;
       for(int i=0;i<k;i++){
           presult=mod(presult,presult,m);
       }
