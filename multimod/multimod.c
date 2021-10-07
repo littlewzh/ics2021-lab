@@ -60,7 +60,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     uint64_t presult=a;
     for(uint64_t j=0;j<=k;j++){
       if(bin[j]){
-        for(uint64_t i=0;i<=j;i++){
+        for(uint64_t i=0;i<j;i++){
            presult=addmod(presult,presult,m);
          }  
       }
