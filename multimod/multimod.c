@@ -63,8 +63,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
         for(uint64_t i=0;i<j;i++){
            presult=addmod(presult,presult,m);
          }  
-      }
       result=addmod(presult,result,m);
+      }
+      
     }
   }
   return result;
