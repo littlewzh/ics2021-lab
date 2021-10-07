@@ -52,7 +52,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   if((l+k)<64){
     for(uint64_t i=0;i<=k;i++){
       if(bin[i]){
-        result=addmod(result,a<<k,m);
+        result=addmod(result,a<<i,m);
       }
     }
   }
