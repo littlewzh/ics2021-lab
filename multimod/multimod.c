@@ -23,13 +23,13 @@ else {
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t result=0;
-  uint64_t k=0;
-  for(uint64_t i=0;i<64;i++){
+  int k=0;
+  for(int i=0;i<64;i++){
     if(bintran(b,i)) {bin[i]=1;k=i;}
     else {bin[i]=0;}
   }
-  uint64_t l=0;
-  for(uint64_t j=0;j<64;j++){
+  int l=0;
+  for(int j=0;j<64;j++){
     if(bintran(a,j)) {ain[j]=1;l=j;}
     else {ain[j]=0;}
   } 
@@ -49,25 +49,18 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     }
 
   }*/
-  if((l+k)<64){
-    for(uint64_t i=0;i<=k;i++){
+    for(int i=k;i>=0;i--){
       if(bin[i]){
-        result=addmod(result,a<<i,m);
-      }
-    }
-  }
-  else{
-    
-    for(uint64_t j=k;j>=0;j--){
-      if(bin[j]){
-        uint64_t presult=a;
-        for(uint64_t i=0;i<j;i++){
+        if((i+l)<64){
+        result=addmod(result,a<<i,m);}
+        else{
+          uint64_t presult=a;
+        for(int j=0;j<i;j++){
            presult=addmod(presult,presult,m);
          }  
       result=addmod(presult,result,m);
+        }
       }
-      
     }
-  }
   return result;
 }
