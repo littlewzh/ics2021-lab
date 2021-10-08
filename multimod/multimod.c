@@ -9,11 +9,12 @@ uint64_t mod(uint64_t c,uint64_t mod){
   else {
     while(c>=mod){
       uint64_t modd=mod;
+      int k=0;
       while((c>=modd)&&(!bintran(modd,63))){
         modd=modd<<1;
-        
+        k++;
       }
-      c=c-(modd>>1);
+      c=c-(modd>>(k-1));
     }
     return c;
   }
