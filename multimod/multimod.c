@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include<stdio.h>
 int ain[128],bin[128],min[128];
-uint64_t bintran(uint64_t z,uint64_t i){
+uint64_t bintran(uint64_t z,int i){
   return (z>>i)&1;
 }
 uint64_t mod(uint64_t c,uint64_t mod){
@@ -9,7 +9,7 @@ uint64_t mod(uint64_t c,uint64_t mod){
   else {
     while(c>=mod){
       uint64_t modd=mod;
-      while((c>=modd)&&!bintran(modd,63)){
+      while((c>=modd)&&(!bintran(modd,63))){
         modd=modd<<1;
         
       }
