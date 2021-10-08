@@ -6,15 +6,14 @@ uint64_t bintran(uint64_t z,int i){
 }
 uint64_t mod(uint64_t c,uint64_t mod){
   if(c<mod) {return c;}
+  else if(c==mod) {return 0;}
   else {
     while(c>=mod){
       uint64_t modd=mod;
-      int k=0;
       while((c>=modd)&&(!bintran(modd,63))){
         modd=modd<<1;
-        k++;
       }
-      c=c-(modd<<(k-1));
+      c=c-(modd>>1);
     }
     return c;
   }
