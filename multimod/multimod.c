@@ -12,7 +12,7 @@ uint64_t mod(uint64_t c,uint64_t mod){
       }
       c=c-(modd>>1);
     }
-    return s;
+    return c;
   }
 }
 uint64_t bintran(uint64_t z,uint64_t i){
