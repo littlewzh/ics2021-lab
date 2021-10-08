@@ -1,16 +1,16 @@
 #include <stdint.h>
 #include<stdio.h>
 int ain[128],bin[128],min[128];
-uint64_t mod(uint64_t s,uint64_t mod){
-  if(s<mod) {return s;}
+uint64_t mod(uint64_t c,uint64_t mod){
+  if(c<mod) {return c;}
   else {
-    while(s>=mod){
+    while(c>=mod){
       uint64_t modd=mod;
-      while(s>=modd){
+      while(c>=modd){
         modd=modd<<1;
         
       }
-      s=s-(modd>>1);
+      c=c-(modd>>1);
     }
     return s;
   }
