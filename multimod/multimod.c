@@ -14,7 +14,7 @@ uint64_t mod(uint64_t c,uint64_t mod){
         modd=modd<<1;
         k++;
       }
-      c=c-(modd>>(k-1));
+      c=c-(modd<<(k-1));
     }
     return c;
   }
