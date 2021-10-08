@@ -10,10 +10,13 @@ uint64_t mod(uint64_t c,uint64_t mod){
   else {
     while(c>=mod){
       uint64_t modd=mod;
-      while((c>=modd)&&(!bintran(modd,63))){
-        modd=modd<<1;
+      bool sign=false;
+      while(c>=modd){
+        if(bintran(modd,63)){sign=true;break;}
+        else {modd=modd<<1;}
       }
-      c=c-(modd>>1);
+      if(sign) {c=c-modd;}
+      else { c=c-(modd>>1);}
     }
     return c;
   }
