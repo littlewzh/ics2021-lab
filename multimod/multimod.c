@@ -10,9 +10,9 @@ uint64_t mod(uint64_t c,uint64_t mod){
   else {
     while(c>=mod){
       uint64_t modd=mod;
-      bool sign=false;
+      int sign=0;
       while(c>=modd){
-        if(bintran(modd,63)){sign=true;break;}
+        if(bintran(modd,63)){sign=1;break;}
         else {modd=modd<<1;}
       }
       if(sign) {c=c-modd;}
