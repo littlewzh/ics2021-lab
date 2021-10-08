@@ -1,6 +1,20 @@
 #include <stdint.h>
 #include<stdio.h>
 int ain[128],bin[128],min[128];
+uint64_t mod(uint64_t s,uint64_t mod){
+  if(s<mod) {return s;}
+  else {
+    while(s>=mod){
+      uint64_t modd=mod;
+      while(s>=modd){
+        modd=modd<<1;
+        
+      }
+      s=s-(modd>>1);
+    }
+    return s;
+  }
+}
 uint64_t bintran(uint64_t z,uint64_t i){
   return (z>>i)&1;
 }
