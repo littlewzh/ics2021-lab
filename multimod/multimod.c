@@ -6,7 +6,7 @@ uint64_t mod(uint64_t c,uint64_t mod){
   else {
     while(c>=mod){
       uint64_t modd=mod;
-      while(c>=modd){
+      while((c>=modd)&&!bintran(modd,63)){
         modd=modd<<1;
         
       }
