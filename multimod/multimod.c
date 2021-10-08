@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include<stdio.h>
 int ain[128],bin[128],min[128];
+uint64_t bintran(uint64_t z,uint64_t i){
+  return (z>>i)&1;
+}
 uint64_t mod(uint64_t c,uint64_t mod){
   if(c<mod) {return c;}
   else {
@@ -15,9 +18,7 @@ uint64_t mod(uint64_t c,uint64_t mod){
     return c;
   }
 }
-uint64_t bintran(uint64_t z,uint64_t i){
-  return (z>>i)&1;
-}
+
 uint64_t addmod(uint64_t x,uint64_t y,uint64_t m){
   x=mod(x,m);
   y=mod(y,m);
