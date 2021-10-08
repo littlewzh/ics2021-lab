@@ -19,20 +19,14 @@ uint64_t bintran(uint64_t z,uint64_t i){
   return (z>>i)&1;
 }
 uint64_t addmod(uint64_t x,uint64_t y,uint64_t m){
-  while(x>=m){
-    x=x-m;
-  }
-  while(y>=m){
-     y=y-m;
-   }
+  x=mod(x,m);
+  y=mod(y,m);
   uint64_t s=x+y;
   if(x>(-1ULL-y)){                       //此时发生了溢出
     return addmod(s+1,-1ULL,m);
   }
 else {
-  while(s>=m) {s=s-m;}
- 
-  return s;
+  return mod(s,m);
 }
 }
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
