@@ -28,10 +28,10 @@ int asm_popcnt(uint64_t x) {
       "and $0x1,%%eax;"
       "cmp $0x1,%%eax;"
       "jz .loop;"
-      "incl %[xs];"
+      "incl %[as];"
       "jmp .loop;"
-      :[xs]"=r"(s)
-      :[xs]"r"(s),[ai]"r"(i),[ax]"r"(x)
+      :[as]"=r"(s)
+      :[as]"r"(s),[ai]"r"(i),[ax]"r"(x)
   );
   return s;
 }
