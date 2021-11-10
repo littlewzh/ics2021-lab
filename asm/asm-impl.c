@@ -18,7 +18,7 @@ int asm_popcnt(uint64_t x) {
   int i=0;
   asm(
      //"mov $0x0,%[xs];"
-      "mov %edi, %[ax];"
+      "mov %%edi, %[ax];"
      ".loop:"
       "cmp $0x40,%[ai];"
       "jge  .ret;"
