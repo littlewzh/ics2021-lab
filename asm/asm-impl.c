@@ -17,19 +17,19 @@ int asm_popcnt(uint64_t x) {
   int s=0;
   int i=0;
   asm(
-     "mov $0x0,%[xs];
-      mov %edi, %[ax];
-     .loop:
-      cmp $0x40,%[ai];
-      jge  .ret;
-      incl %[ai];
-      shr $0x1,%[ax];
-      mov %[ax],%[or];
-      and $0x1,%[or];
-      cmp $0x1,%[or];
-      jz .loop;
-      incl %[xs];
-      jmp .loop;"
+     "mov $0x0,%[xs];"
+      "mov %edi, %[ax];"
+     ".loop:"
+      "cmp $0x40,%[ai];"
+      "jge  .ret;"
+      "incl %[ai];"
+      "shr $0x1,%[ax];"
+      "mov %[ax],%[or];"
+      "and $0x1,%[or];"
+      "cmp $0x1,%[or];"
+      "jz .loop;"
+      "incl %[xs];"
+      "jmp .loop;"
       :[xs]"=r"(s)
       :[xs]"r"(s),[ai]"r"(i),[ax]"r"(x)
   );
