@@ -14,11 +14,12 @@ int asm_popcnt(uint64_t x) {
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1) s++;
   }*/
-  //int s=0;
+  int s=0;
   //int i=0;
   asm(
      //"mov $0x0,%[xs];"
-      "mov $0x0 %[as]"
+      "mov %%edx %[as]"
+      "mov $0x0 %[ai]"
       "mov %%edi, %[ax];"
      ".loop:"
       "cmp $0x40,%[ai];"
@@ -32,7 +33,7 @@ int asm_popcnt(uint64_t x) {
       "incl %[as];"
       "jmp .loop;"
       :[as]"=r"(s)
-      :[as]"r"(s),[ai]"r"(i),[ax]"r"(x)
+      :[as]"r"(s),[ax]"r"(x)
   );
   return s;
 }
