@@ -2,11 +2,11 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
- asm("add %%edx,%%eax"
+ /*asm("add %%edx,%%eax"
      :"=r"(a)
      :"r"(a),"r"(b)
- );
-  return a;
+ );*/
+  return a+b;
 }
 
 int asm_popcnt(uint64_t x) {
