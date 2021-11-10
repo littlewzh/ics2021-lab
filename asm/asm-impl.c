@@ -33,7 +33,7 @@ int asm_popcnt(uint64_t x) {
       "incl %[as];"
       "jmp .loop;"
       :[as]"=r"(s)
-      :[as]"r"(s),[ax]"r"(x)
+      :[as]"r"(s),[ai]"r"(i),[ax]"r"(x)
   );
   return s;
 }
