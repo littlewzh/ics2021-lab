@@ -29,7 +29,7 @@ int asm_popcnt(uint64_t x) {
       "add %%eax,%%edx;"
       "cmp $0x40,%%ecx;"
       "jl .loop;"
-
+      "mov %%edx,%%eax;"
    
       :"=r"(s)
       :"r"(s),"r"(x)
