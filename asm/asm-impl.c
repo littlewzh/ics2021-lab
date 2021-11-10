@@ -14,11 +14,11 @@ int asm_popcnt(uint64_t x) {
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1) s++;
   }*/
-  int s=0;
-  int i=0;
+  //int s=0;
+  //int i=0;
   asm(
      //"mov $0x0,%[xs];"
-      "mov 0 %[as]"
+      "mov $0x0 %[as]"
       "mov %%edi, %[ax];"
      ".loop:"
       "cmp $0x40,%[ai];"
