@@ -21,14 +21,14 @@ int asm_popcnt(uint64_t x) {
   asm(
       "mov $0x0,%%ecx;"           //int i=0
       "mov $0x0,%%edx;"          // int s=0
-      ".loop:"
+      ".loop1:"
       "mov %%rdi,%%rax;"         // x->rdi
       "shr %%cl,%%rax;"
       "and $0x1,%%eax;"
       "incl %%ecx;"
       "add %%eax,%%edx;"
       "cmp $0x40,%%ecx;"
-      "jl .loop;"
+      "jl .loop1;"
       "mov %%edx,%%eax;"
    
       :"=r"(s)
