@@ -2,7 +2,9 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
- asm("add %%rdi,%%rsi"
+ asm(
+     "mov %%rdi,%%rax;"
+     "add %%rsi,%%rax;"
      :"=r"(a)
      :"r"(a),"r"(b)
  );
