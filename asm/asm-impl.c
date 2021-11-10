@@ -2,7 +2,7 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
- asm("addl %%edx,%%eax"
+ asm("add %%edx,%%eax"
      :"=r"(a)
      :"r"(a),"r"(b)
  );
@@ -10,11 +10,11 @@ int64_t asm_add(int64_t a, int64_t b) {
 }
 
 int asm_popcnt(uint64_t x) {
- /* int s = 0;
+  int s = 0;
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1) s++;
-  }*/
-  int s=0;
+  }
+  /*int s=0;
   //int i=0;
   asm(
      //"mov $0x0,%[xs];"
@@ -34,7 +34,7 @@ int asm_popcnt(uint64_t x) {
       "jmp .loop;"
       :[as]"=r"(s)
       :[as]"r"(s),[ai]"r"(i),[ax]"r"(x)
-  );
+  );*/
   return s;
 }
 
