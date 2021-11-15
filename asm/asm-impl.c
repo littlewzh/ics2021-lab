@@ -3,8 +3,9 @@
 
 int64_t asm_add(int64_t a, int64_t b) {
  asm(
+    // "mov %%rdi,%%rax;"
+     "add %%rdi,%%rsi;"
      "mov %%rdi,%%rax;"
-     "add %%rsi,%%rax;"
      :"=r"(a)
      :"r"(a),"r"(b)
  );
@@ -89,20 +90,21 @@ int asm_setjmp(asm_jmp_buf *env) {
 }
 
 void asm_longjmp(asm_jmp_buf *env, int val) {
-	asm volatile(
-			"movq 0(%%rdi),%%rax\n\t"	
-			"movq 16(%%rdi),%%rcx\n\t"
-			"movq 24(%%rdi),%%rdx\n\t"
-			"movq 48(%%rdi),%%rsp\n\t"
-			"movq 56(%%rdi),%%rbp\n\t"
-			"movq 64(%%rdi),%%rbx\n\t"
-			"pushq %%rbx\n\t"			//push eip
-			"movq 8(%%rdi),%%rbx\n\t"
-			"movq 32(%%rdi),%%rdi\n\t"
-			"movq 40(%%rdi),%%rsi\n\t"
-			"ret\n\t"					//pop eip
-			:
-			:);  
+  asm (
+	"movq 0(%%rdi),%%rax\n\t"	
+	"movq 16(%%rdi),%%rcx\n\t"
+	"movq 24(%%rdi),%%rdx\n\t"
+	"movq 48(%%rdi),%%rsp\n\t"
+	"movq 56(%%rdi),%%rbp\n\t"
+	"movq 64(%%rdi),%%rbx\n\t"
+	"pushq %%rbx\n\t"			//push eip
+	"movq 8(%%rdi),%%rbx\n\t"
+	"movq 32(%%rdi),%%rdi\n\t"
+	"movq 40(%%rdi),%%rsi\n\t"
+	"ret\n\t"					//pop eip
+	:
+	:
+        );  
 
   //longjmp(env, val);
 }
