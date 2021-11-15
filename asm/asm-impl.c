@@ -63,7 +63,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf *env) {
-  int val; 
+  int val=0; 
   asm (
     // "mov -8(%%rsp),%%rax;"
      "movq %%rax, (%%rdi);"
