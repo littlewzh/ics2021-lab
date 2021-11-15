@@ -3,9 +3,9 @@
 
 int64_t asm_add(int64_t a, int64_t b) {
  asm(
-    // "mov %%rdi,%%rax;"
-     "add %%rdi,%%rsi;"
-     "mov %%rsi,%%rax;"
+     "mov %%rdi,%%rax;"
+     "add %%rsi,%%rax;"
+    // "mov %%rsi,%%rax;"
      :"=r"(a)
      :"r"(a),"r"(b)
  );
@@ -63,6 +63,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf *env) {
+  int val; 
   asm (
     // "mov -8(%%rsp),%%rax;"
      "movq %%rax, (%%rdi);"
@@ -73,7 +74,7 @@ int asm_setjmp(asm_jmp_buf *env) {
     // "lea 16(%%rsp),%%rcx;"
      "movq %%rdi, 32(%%rdi);"
     // "mov 8(%%rsp),%%rcx;"
-     "movq %%rsi, 40(%%rdi);"
+    // "movq %%rsi, 40(%%rdi);"
      "movq %%rsp,%%rbx;"
      "add $0x10,%%rbx;"
      "movq %%rbx, 48(%%rdi);"
@@ -81,11 +82,12 @@ int asm_setjmp(asm_jmp_buf *env) {
      "movq %%rbx,56(%%rdi);"
      "movq 8(%%rbp),%%rbx;"
      "movq %%rbx,64(%%rdi);"
-     :"=r"(env)
-     :"r"(env)
+     "movq 40(%%rdi),%%rax;"
+     :"=r"(val)
+     :"r"(env),"r"(val)
      :
       );
-   return 0;
+   return val;
   //return setjmp(env);
 }
 
@@ -100,7 +102,7 @@ void asm_longjmp(asm_jmp_buf *env, int val) {
 	"pushq %%rbx\n\t"			//push eip
 	"movq 8(%%rdi),%%rbx\n\t"
 	"movq 32(%%rdi),%%rdi\n\t"
-	"movq 40(%%rdi),%%rsi\n\t"
+	"movq %%rsi,40(%%rdi)\n\t"
 	"ret\n\t"					//pop eip
 	:
 	:
