@@ -4,7 +4,7 @@
 // TODO: replace with your definition
 //#include <setjmp.h> // remove this
 //#define asm_jmp_buf struct asm_jmp_buf
-typedef struct asm_jmp_buf{
+typedef struct {
   unsigned long buf[10];
 }asm_jmp_buf;
 int64_t asm_add(int64_t a, int64_t b);
