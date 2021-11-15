@@ -76,7 +76,7 @@ int asm_setjmp(asm_jmp_buf env) {
      "xor %%rax,%%rax;" 
      :
      :
-     :%rax,%rcx
+     :"%rax","%rcx"
       );
    return 0;
   //return setjmp(env);
