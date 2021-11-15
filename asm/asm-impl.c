@@ -70,7 +70,7 @@ int asm_setjmp(asm_jmp_buf *env) {
      "movq %%rcx, 16(%%rdi);"
      "movq %%rdx,24(%%rdi);"
      "movq %%rdi, 32(%%rdi);"
-    //"movq %%rsi, 40(%%rdi);"
+     "movq %%rip, 40(%%rdi);"
      "movq %%rsp,%%rbx;"
      "add $0x8,%%rbx;"
      "movq %%rbx, 48(%%rdi);"
@@ -78,7 +78,7 @@ int asm_setjmp(asm_jmp_buf *env) {
      "movq %%rbx,56(%%rdi);"
      "movq 8(%%rbp),%%rbx;"
      "movq %%rbx,64(%%rdi);"
-     "movq 40(%%rdi),%%rax;"
+   //  "movq 40(%%rdi),%%rax;"
      :"=r"(env)
      :"r"(env),"r"(val)
      :
@@ -99,7 +99,7 @@ void asm_longjmp(asm_jmp_buf *env, int val) {
 	"movq 8(%%rdi),%%rbx\n\t"
 	"movq 32(%%rdi),%%rdi\n\t"
 	"movq %%rsi,40(%%rdi)\n\t"
-	"jmp (%%rbp);"
+	"jmp 40(%%rdi);"
         "ret\n\t"					//pop eip
 	:"=r"(val)
 	:"r"(env),"r"(val)
