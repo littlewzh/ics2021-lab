@@ -87,7 +87,7 @@ int asm_setjmp(asm_jmp_buf *env) {
      :"r"(env)
      :
       );
-   //return val;
+  return 0;
   //return setjmp(env);
 }
 
