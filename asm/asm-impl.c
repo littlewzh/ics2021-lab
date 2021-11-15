@@ -73,12 +73,12 @@ int asm_setjmp(asm_jmp_buf env) {
      "mov %%rdi, 32(%%rdi);"
     // "mov 8(%%rsp),%%rcx;"
      "mov %%rsi, 40(%%rdi);"
-     "mov %%rbp,%%rbx;"
+     "mov %%rsp,%%rbx;"
      "add $0x10,%%rbx;"
      "mov %%rbx, 48(%%rdi);"
-     "mov (%%rbp),%%rbx;"
+     "mov (%%rsp),%%rbx;"
      "mov %%rbx,56(%%rdi);"
-     "mov 8(%%rbp),%%rbx;"
+     "mov 8(%%rsp),%%rbx;"
      "mov %%rbx,64(%%rdi);"
      :
      :
