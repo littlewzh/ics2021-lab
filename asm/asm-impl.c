@@ -70,10 +70,10 @@ int asm_setjmp(asm_jmp_buf env) {
      "mov (%%rsp), %%rcx;"
      "mov %%rcx,12(%%rax);"
      "lea -8(%%rsp),%%rcx;"
-     "mov %%rcx), 16(%%rax);"
+     "mov %%rcx, 16(%%rax);"
      "mov -4(%%rsp),%%rcx;"
      "mov %%rcx, 20(%%rax);"
-     "xor %%rax,%%rax" 
+     "xor %%rax,%%rax;" 
       );
    return 0;
   //return setjmp(env);
