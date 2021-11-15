@@ -74,7 +74,7 @@ int asm_setjmp(asm_jmp_buf *env) {
     // "lea 16(%%rsp),%%rcx;"
      "movq %%rdi, 32(%%rdi);"
     // "mov 8(%%rsp),%%rcx;"
-    // "movq %%rsi, 40(%%rdi);"
+    "movq %%rsi, 40(%%rdi);"
      "movq %%rsp,%%rbx;"
      "add $0x10,%%rbx;"
      "movq %%rbx, 48(%%rdi);"
@@ -82,7 +82,7 @@ int asm_setjmp(asm_jmp_buf *env) {
      "movq %%rbx,56(%%rdi);"
      "movq 8(%%rbp),%%rbx;"
      "movq %%rbx,64(%%rdi);"
-     "movq 40(%%rdi),%%rax;"
+     //"movq 40(%%rdi),%%rax;"
      :
      :"r"(env)
      :
