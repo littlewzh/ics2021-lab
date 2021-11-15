@@ -64,19 +64,24 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 int asm_setjmp(asm_jmp_buf env) {
   asm(
     // "mov -8(%%rsp),%%rax;"
-     "mov %%rbx, (%%rdi);"
-     "mov %%rsi, 8(%%rdi);"
-     "mov %%rdi, 16(%%rdi);"
-     "mov (%%rsp), %%rcx;"
-     "mov %%rcx,24(%%rdi);"
-     "lea 16(%%rsp),%%rcx;"
-     "mov %%rcx, 32(%%rdi);"
-     "mov 8(%%rsp),%%rcx;"
-     "mov %%rcx, 40(%%rdi);"
-     "xor %%rax,%%rax;" 
+     "mov %%rax, (%%rdi);"
+     "mov %%rbx, 8(%%rdi);"
+     "mov %%rcx, 16(%%rdi);"
+    // "mov (%%rsp), %%rcx;"
+     "mov %%rdx,24(%%rdi);"
+    // "lea 16(%%rsp),%%rcx;"
+     "mov %%rdi, 32(%%rdi);"
+    // "mov 8(%%rsp),%%rcx;"
+     "mov %%rsi, 40(%%rdi);"
+     "mov %%rbp,%%rbx;"
+     "add $0x10,%%rbx;"
+     "mov %%rbx, 48(%%rdi);"
+     "mov (%%rbp),%%rbx;"
+     "mov %%rbx,56(%%rdi);"
+     "mov 8(%%rbp),%%rbx;"
+     "mov %%rbx,64(%%rdi);"
      :
      :
-     :"%rax","%rcx"
       );
    return 0;
   //return setjmp(env);
