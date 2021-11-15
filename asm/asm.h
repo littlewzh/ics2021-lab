@@ -6,7 +6,7 @@
 //#define asm_jmp_buf jmp_buf
 typedef struct asm_jmp_buf{
   unsigned long buf[6];
-};
+}env;
 int64_t asm_add(int64_t a, int64_t b);
 int     asm_popcnt(uint64_t x);
 void   *asm_memcpy(void *dest, const void *src, size_t n);
