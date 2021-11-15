@@ -62,7 +62,18 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-  return setjmp(env);
+  asm(
+     "mov -8(%%rsp) %%rax;"
+     "mov %%rbx, (%%rax);"
+     "mov %%rsi, 4(%%rax);"
+     "mov %%rdi, 8(%%rax);"
+     "mov (%%rsp),12(%%rax);"
+     "lea -8(%%rsp),16(%%rax);"
+     "mov -4(%%rsp),20(%%rax);"
+     "xor %%rax,%%rax" 
+      );
+   return 0;
+  //return setjmp(env);
 }
 
 void asm_longjmp(asm_jmp_buf env, int val) {
