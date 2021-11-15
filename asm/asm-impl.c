@@ -99,7 +99,7 @@ void asm_longjmp(asm_jmp_buf *env, int val) {
 	"movq 48(%%rdi),%%rsp\n\t"
 	"movq 56(%%rdi),%%rbp\n\t"
 	"movq 64(%%rdi),%%rbx\n\t"
-	"pushq %%rbx\n\t"			//push eip
+	//"pushq %%rbx\n\t"			//push eip
 	"movq 8(%%rdi),%%rbx\n\t"
 	"movq 32(%%rdi),%%rdi\n\t"
 	"movq %%rsi,40(%%rdi)\n\t"
