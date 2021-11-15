@@ -80,8 +80,9 @@ int asm_setjmp(asm_jmp_buf env) {
      "movq %%rbx,56(%%rdi);"
      "movq 8(%%rbp),%%rbx;"
      "movq %%rbx,64(%%rdi);"
-     :
+     :"=r"(env)
      :"r"(env)
+     :
       );
    return 0;
   //return setjmp(env);
