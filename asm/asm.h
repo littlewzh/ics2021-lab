@@ -5,7 +5,7 @@
 //#include <setjmp.h> // remove this
 //#define asm_jmp_buf struct asm_jmp_buf
 typedef struct asm_jmp_buf{
-  unsigned long buf[8];
+  unsigned long buf[9];
 }asm_jmp_buf;
 int64_t asm_add(int64_t a, int64_t b);
 int     asm_popcnt(uint64_t x);
