@@ -5,7 +5,7 @@ int64_t asm_add(int64_t a, int64_t b) {
  asm(
     // "mov %%rdi,%%rax;"
      "add %%rdi,%%rsi;"
-     "mov %%rdi,%%rax;"
+     "mov %%rsi,%%rax;"
      :"=r"(a)
      :"r"(a),"r"(b)
  );
