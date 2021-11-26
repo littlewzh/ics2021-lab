@@ -20,7 +20,7 @@ int asm_popcnt(uint64_t x) {
   int s=0;
   //int i=0;
   asm(
-      "mov $0x0,%%ecx;"           //int i=0
+      "movq $0x0,%%ecx;"           //int i=0
       "mov $0x0,%%edx;"          // int s=0
       ".loop1:"
       "mov %%rdi,%%rax;"         // x->rdi
