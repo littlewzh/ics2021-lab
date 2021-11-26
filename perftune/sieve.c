@@ -33,10 +33,10 @@ int *sieve(int n) {
   int cnt=0;
 for(int i=2; i<=n; i++){
 	if(is_prime[i]==false)
-		prime[++cnt] = i;
-	for(int j=1; j<=cnt&&i*prime[j]<=n; j++){
-		numlist[i*prime[j]] = true ;
-		if(i%prime[j]==0)
+		primes[++cnt] = i;
+	for(int j=1; j<=cnt&&i*primes[j]<=n; j++){
+		numlist[i*primes[j]] = true ;
+		if(i%primes[j]==0)
 			break;
 	} 
 }
