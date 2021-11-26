@@ -81,7 +81,7 @@ int asm_setjmp(asm_jmp_buf env) {
    //  "movq 40(%%rdi),%%rax;"
      :
      :"r"(env)
-     :
+     
       );
   return 0;
   //return setjmp(env);
