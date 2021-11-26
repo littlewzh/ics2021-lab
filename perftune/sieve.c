@@ -35,7 +35,7 @@ for(int i=2; i<=n; i++){
 	if(is_prime[i]==false)
 		primes[++cnt] = i;
 	for(int j=1; j<=cnt&&i*primes[j]<=n; j++){
-		is_primes[i*primes[j]] = true ;
+		is_prime[i*primes[j]] = true ;
 		if(i%primes[j]==0)
 			break;
 	} 
