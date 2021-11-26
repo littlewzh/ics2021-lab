@@ -29,6 +29,7 @@ int *sieve(int n) {
       *p++ = i;
     }
   *p = 0;*/
+       int cnt=0;
 	for(int i=2; i<=n; i++){
 		if(is_prime[i])
 			primes[++cnt] = i ;
