@@ -89,7 +89,6 @@ int asm_setjmp(asm_jmp_buf *env) {
 
 void asm_longjmp(asm_jmp_buf *env, int val) {
   asm ( 
-        "call %%rbx"
 	"mov (%%rdi),%%rax\n\t"	
 	"mov 8(%%rdi),%%rcx\n\t"
 	"mov 12(%%rdi),%%rdx\n\t"
