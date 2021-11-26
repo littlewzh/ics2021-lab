@@ -93,7 +93,7 @@ void asm_longjmp(asm_jmp_buf env, int val) {
              //"mov 18(%%rdi),"
              "jmp *18(%%rdi);"
             :
-            :"r"(val)
+            :"rsi"(val)
             :
 
   );  
