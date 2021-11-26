@@ -20,7 +20,7 @@ int asm_popcnt(uint64_t x) {
   int s=0;
   //int i=0;
   asm(
-      "movq $0x0,%%ecx;"           //int i=0
+      "mov $0x0,%%ecx;"           //int i=0
       "mov $0x0,%%edx;"          // int s=0
       ".loop1:"
       "mov %%rdi,%%rax;"         // x->rdi
@@ -63,7 +63,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-  int val=0; 
+  //int val=0; 
   asm (
      "mov %%rax, (%%rdi);"
      "mov %%rbx, 8(%%rdi);"
@@ -83,7 +83,7 @@ int asm_setjmp(asm_jmp_buf env) {
      :"r"(env)
      :
       );
-  return val;
+  return 0;
   //return setjmp(env);
 }
 
@@ -100,7 +100,7 @@ void asm_longjmp(asm_jmp_buf env, int val) {
 	"mov 32(%%rdi),%%rdi\n\t"
 	"mov %%rsi,40(%%rdi)\n\t"
         "mov 64(%%rdi),%%rbx\n\t"
-	"jmp *48(%%rdi)\n\t"
+	"jmp 48(%%rdi)\n\t"
         "ret\n\t"					//pop eip
 	:"=r"(val)
 	:"r"(env),"r"(val)
