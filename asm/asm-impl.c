@@ -63,49 +63,11 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-  //int val=0; 
-  asm (
-     "mov %%rax, 0(%%rdi);"
-     "mov %%rbx, 8(%%rdi);"
-     "mov %%rcx, 16(%%rdi);"
-     "mov %%rdx, 24(%%rdi);"
-     "mov %%rdi, 32(%%rdi);"
-     "mov %%rip, 40(%%rdi);"
-    // "mov %%rbp,%%rbx;"
-     "mov  $0x8,%%rbx;"
-     "add %%rbp,%%rbx;"
-     "mov %%rbx, 48(%%rdi);"
-     "mov (%%rbp),%%rbx;"
-     "mov %%rbx,56(%%rdi);"
-     "mov 8(%%rbp),%%rbx;"
-     "mov %%rbx,64(%%rdi);"
-      ".set_jmp:"
-   //  "movq 40(%%rdi),%%rax;"
-     :"=r"(env)
-     :"r"(env) 
-      );
-  return 0;
-  //return setjmp(env);
+
+  return setjmp(env);
 }
 
 void asm_longjmp(asm_jmp_buf env, int val) {
-  asm ( 
-//	"mov (%%rdi),%%rax\n\t"	
-//	"mov 16(%%rdi),%%rcx\n\t"
-//	"mov 24(%%rdi),%%rdx\n\t"
-//	"mov 48(%%rdi),%%rsp\n\t"
-//	"mov 56(%%rdi),%%rbp\n\t"
-	//"movq 64(%%rdi),%%rbx\n\t"
-	//"pushq %%rbx\n\t"			//push eip
-//	"mov 8(%%rdi),%%rbx\n\t"
-	"mov 32(%%rdi),%%rdi\n\t"
-//	"mov %%rsi,40(%%rdi)\n\t"
-//        "mov 64(%%rdi),%%rbx\n\t"
-	"jmp .set_jmp\n\t"
-        "ret\n\t"					//pop eip
-	:
-	:"r"(env)
-        );  
 
-  //longjmp(env, val);
+  longjmp(env, val);
 }
