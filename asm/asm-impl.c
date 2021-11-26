@@ -103,7 +103,7 @@ void asm_longjmp(asm_jmp_buf env, int val) {
 	"jmp *%%rbx\n\t"
         "ret\n\t"					//pop eip
 	:
-	:"r"(env),"r"(val)
+	:"r"(val)
         );  
 
   //longjmp(env, val);
