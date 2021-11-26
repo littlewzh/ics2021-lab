@@ -33,7 +33,7 @@ int *sieve(int n) {
   memset(is_prime,1,sizeof(is_prime));
   //int *p=primes;
   //for(int )     
-   *prime=2;
+   *primes=2;
 	for(int i=3; i<=n; i+=2){
 		if(is_prime[i]){
 			primes[cnt]=i;cnt++;}
