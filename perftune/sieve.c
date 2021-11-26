@@ -29,17 +29,17 @@ int *sieve(int n) {
       *p++ = i;
     }
   *p = 0;*/
-  int cnt=0;
+  int cnt=1;
   memset(is_prime,1,sizeof(is_prime));
   //int *p=primes;
   //for(int )     
-	for(int i=2; i<=n; i++){
+   *prime=2;
+	for(int i=3; i<=n; i+=2){
 		if(is_prime[i]){
-			primes[cnt] = i;cnt++;}
+			primes[cnt]=i;cnt++;}
 		for(int j=0; j<cnt&&i*primes[j]<=n; j++){
 			is_prime[i*primes[j]]=false;
-			if(i%primes[j]==0)
-				break;
+			if(i%primes[j]==0) break;
 		} 
 	}
   return primes;
