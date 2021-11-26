@@ -68,14 +68,14 @@ int asm_setjmp(asm_jmp_buf env) {
                "mov %%rsp,%%rbp;"
                "mov (%%rbp),%%rax;"
                "mov %%rax, (%%rdi);"
-               "lea 10(%%rsp),%%rax;"
-               "mov %%rax,8(%%rdi);"
-               "mov %%rbx,10(%%rdi);"
-               "mov 8(%%rbp),%%rax;"
-               "mov %%rax,18(%%rdi);"
-               "mov %%rcx,20(%%rdi);"
-               "mov %%rdx,28(%%rdi);"
-               "mov %%rsi,30(%%rdi);"
+               "lea 0x10(%%rsp),%%rax;"
+               "mov %%rax,0x8(%%rdi);"
+               "mov %%rbx,0x10(%%rdi);"
+               "mov 0x8(%%rbp),%%rax;"
+               "mov %%rax,0x18(%%rdi);"
+               "mov %%rcx,0x20(%%rdi);"
+               "mov %%rdx,0x28(%%rdi);"
+               "mov %%rsi,0x30(%%rdi);"
                "pop %%rbp;"
                :
                :
@@ -87,14 +87,14 @@ void asm_longjmp(asm_jmp_buf env, int val) {
   //longjmp(env, val);
   asm volatile(
              "mov %%rsi,%%rax;"
-             "mov 10(%%rdi),%%rbx;"
-             "mov 20(%%rdi),%%rcx;"
-             "mov 28(%%rdi),%%rdx;"
-             "mov 30(%%rdi),%%rsi;"
+             "mov 0x10(%%rdi),%%rbx;"
+             "mov 0x20(%%rdi),%%rcx;"
+             "mov 0x28(%%rdi),%%rdx;"
+             "mov 0x30(%%rdi),%%rsi;"
              //"mov 18(%%rdi),"
              "mov (%%rdi),%%rbp;"
-             "mov 8(%%rdi),%%rsp;"
-             "mov 18(%%rdi),%%rdi;"
+             "mov 0x8(%%rdi),%%rsp;"
+             "mov 0x18(%%rdi),%%rdi;"
              "jmp *%%rdi;"
             :
             :"rsi"(val)
