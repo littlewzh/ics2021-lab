@@ -87,8 +87,11 @@ void asm_longjmp(asm_jmp_buf env, int val) {
   //longjmp(env, val);
   asm volatile(
              "mov %%rsi,%%rax;"
-             "mov (%%rdi),%%rcx;"
-             "jmp *%%rcx;"
+             "mov 20(%%rdi),%%rcx;"
+             "mov 28(%%rdi),%%rdx;"
+             "mov 30(%%rdi),%%rsi;"
+             //"mov 18(%%rdi),"
+             "jmp *18(%%rdi);"
             :
             :"r"(val)
             :
