@@ -99,7 +99,8 @@ void asm_longjmp(asm_jmp_buf env, int val) {
 	"mov 4(%%rdi),%%rbx\n\t"
 	"mov 16(%%rdi),%%rdi\n\t"
 	"mov %%rsi,20(%%rdi)\n\t"
-	"jmp %%rsp;"
+        "mov 32(%%rdi),%%rbx\n\t"
+	"jmp *%%rbx;"
         "ret\n\t"					//pop eip
 	:"=r"(val)
 	:"r"(env),"r"(val)
