@@ -65,19 +65,19 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 int asm_setjmp(asm_jmp_buf *env) {
   int val=0; 
   asm (
-     "movq %%rax, (%%rdi);"
-     "movq %%rbx, 8(%%rdi);"
-     "movq %%rcx, 16(%%rdi);"
-     "movq %%rdx,24(%%rdi);"
-     "movq %%rdi, 32(%%rdi);"
-     "movq %%rip, 40(%%rdi);"
-     "movq %%rsp,%%rbx;"
-     "add $0x8,%%rbx;"
-     "movq %%rbx, 48(%%rdi);"
-     "movq (%%rbp),%%rbx;"
-     "movq %%rbx,56(%%rdi);"
-     "movq 8(%%rbp),%%rbx;"
-     "movq %%rbx,64(%%rdi);"
+     "mov %%rax, (%%rdi);"
+     "mov %%rbx, 4(%%rdi);"
+     "mov %%rcx, 8(%%rdi);"
+     "mov %%rdx, 12(%%rdi);"
+     "mov %%rdi, 16(%%rdi);"
+     "mov %%rip, 20(%%rdi);"
+     "mov %%rsp,%%rbx;"
+     "add  $0x4,%%rbx;"
+     "mov %%rbx, 24(%%rdi);"
+     "mov (%%rbp),%%rbx;"
+     "mov %%rbx,28(%%rdi);"
+     "mov 4(%%rbp),%%rbx;"
+     "mov %%rbx,32(%%rdi);"
    //  "movq 40(%%rdi),%%rax;"
      :"=r"(env)
      :"r"(env),"r"(val)
@@ -90,17 +90,17 @@ int asm_setjmp(asm_jmp_buf *env) {
 void asm_longjmp(asm_jmp_buf *env, int val) {
   asm ( 
         "call %%rbx"
-	"movq 0(%%rdi),%%rax\n\t"	
-	"movq 16(%%rdi),%%rcx\n\t"
-	"movq 24(%%rdi),%%rdx\n\t"
-	"movq 48(%%rdi),%%rsp\n\t"
-	"movq 56(%%rdi),%%rbp\n\t"
+	"mov (%%rdi),%%rax\n\t"	
+	"mov 8(%%rdi),%%rcx\n\t"
+	"mov 12(%%rdi),%%rdx\n\t"
+	"mov 24(%%rdi),%%rsp\n\t"
+	"mov 28(%%rdi),%%rbp\n\t"
 	//"movq 64(%%rdi),%%rbx\n\t"
 	//"pushq %%rbx\n\t"			//push eip
-	"movq 8(%%rdi),%%rbx\n\t"
-	"movq 32(%%rdi),%%rdi\n\t"
-	"movq %%rsi,40(%%rdi)\n\t"
-	"jmp %%rbx;"
+	"mov 4(%%rdi),%%rbx\n\t"
+	"mov 16(%%rdi),%%rdi\n\t"
+	"mov %%rsi,20(%%rdi)\n\t"
+	"jmp %%rbp;"
         "ret\n\t"					//pop eip
 	:"=r"(val)
 	:"r"(env),"r"(val)
