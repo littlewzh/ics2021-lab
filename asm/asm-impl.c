@@ -63,11 +63,35 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-
-  return setjmp(env);
+  asm volatile(
+               "push %%rbp;"
+               "mov %%rsp,%%rbp;"
+               "mov (%%rbp),%%rax;"
+               "mov %%rax, (%%rdi);"
+               "lea 10(%%rsp),%%rax;"
+               "mov %%rax,8(%%rdi);"
+               "mov %%rbx,10(%%rdi);"
+               "mov 8(%%rbp),%%rax;"
+               "mov %%rax,18(%%rdi);"
+               "mov %%rcx,20(%%rdi);"
+               "mov %%rdx,28(%%rdi);"
+               "mov %%rsi,30(%%rdi);"
+               "pop %%rbp;"
+               :
+               :
+  );
+  return 0;//setjmp(env);
 }
 
 void asm_longjmp(asm_jmp_buf env, int val) {
+  //longjmp(env, val);
+  asm volatile(
+             "mov %%rsi,%%rax;"
+             "mov 18(%%rdi),%%rcx;"
+             "jmp *%%rcx;"
+            :
+            :"r"(val)
+            :
 
-  longjmp(env, val);
+  );  
 }
