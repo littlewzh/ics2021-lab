@@ -53,6 +53,7 @@ uint32_t cache_read(uintptr_t addr) {
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t tag_in=addr>>(BLOCK_WIDTH+set_num);
   uint32_t index=(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
+  printf("%u\n",index);
   uint32_t offset=addr&0x3c;
   int hit=0;
   uint32_t data_in;
