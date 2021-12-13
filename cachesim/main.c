@@ -43,7 +43,7 @@ static void trace_exec(struct trace *t, bool is_check) {
     uint32_t ret = cpu_read(t->t.addr, t->t.len);
     if (is_check) {
       uint32_t ret_uncache = cpu_uncache_read(t->t.addr, t->t.len);
-      printf("cache:0x%08x    uncache:0x%08x",ret,ret_uncache);
+      printf("cache:0x%08x\nuncache:0x%08x\n",ret,ret_uncache);
       assert(ret == ret_uncache);
     }
   }
