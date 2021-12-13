@@ -20,9 +20,9 @@ void cycle_increase(int n) { cycle_cnt += n; }
 // TODO: implement the following functions
 
 uint32_t cache_read(uintptr_t addr) {
-  int tag_in=addr>>(BLOCK_WIDTH+set_num);
-  int index=(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
-  int offset=addr&0x3c;
+  uint32_t tag_in=addr>>(BLOCK_WIDTH+set_num);
+  uint32_t index=(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
+  uint32_t offset=addr&0x3c;
   int hit=0;
   uint32_t data_out;
   int i;
