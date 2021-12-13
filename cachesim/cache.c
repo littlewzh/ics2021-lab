@@ -19,7 +19,8 @@ void cycle_increase(int n) { cycle_cnt += n; }
 
 // TODO: implement the following functions
 
-uint32_t cache_read(uintptr_t addr) {
+uint32_t cache_read(uintptr_t addrin) {
+  uint32_t addr=addrin&~0x3;
   uint32_t tag_in=addr>>12;
   uint32_t index=(addr&0xfff)>>6;//(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
   //printf("0x%08x\n",index);
@@ -41,7 +42,7 @@ uint32_t cache_read(uintptr_t addr) {
     if(dirty[index*4+k]==1){
       mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
     }
-    printf("reach here\n");
+    //printf("reach here\n");
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
     tag[index*4+k]=tag_in;
@@ -53,7 +54,8 @@ uint32_t cache_read(uintptr_t addr) {
   return 0;
 }
 
-void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
+void cache_write(uintptr_t addrin, uint32_t data, uint32_t wmask) {
+  uint32_t addr=addrin&~0x3;
   uint32_t tag_in=addr>>12;//(BLOCK_WIDTH+set_num);
   uint32_t index=(addr&0xfff)>>6;//(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
   //printf("0x%08x\n",index);
@@ -81,7 +83,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     if(dirty[index*4+k]==1){
       mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
     }
-    printf("reach here\n");
+   //printf("reach here\n");
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
     dirty[index*4+k]=1;
