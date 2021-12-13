@@ -34,11 +34,12 @@ uint32_t cache_read(uintptr_t addr) {
     data_out=((uint32_t)cac[(4*index+i)*64+offset])|((uint32_t)cac[(4*index+i)*64+offset+1]<<8)|((uint32_t)cac[(4*index+i)*64+offset+2]<<16)|((uint32_t)cac[(4*index+i)*64+offset+3]<<24);
   }
   else{
-    printf("reach here\n");
+    
     int k=choose(4);
     if(dirty[index*4+k]==1){
       mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
     }
+    printf("reach here\n");
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
     dirty[index*4+k]=0;
@@ -70,11 +71,12 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     //data_out=((uint32_t)cac[(4*index+i)*64+offset])|((uint32_t)cac[(4*index+i)*64+offset+1]<<8)|((uint32_t)cac[(4*index+i)*64+offset+2]<<16)|((uint32_t)cac[(4*index+i)*64+offset+3]<<24);
   }
   else{
-    printf("reach here\n");
+    
     int k=choose(4);
     if(dirty[index*4+k]==1){
       mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
     }
+    printf("reach here\n");
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
     dirty[index*4+k]=1;
