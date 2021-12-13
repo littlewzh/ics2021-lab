@@ -36,7 +36,7 @@ uint32_t cache_read(uintptr_t addr) {
   else{
     int k=choose(ass);
     if(dirty[index*4+k]==1){
-      mem_write((tag[index*4+k]<<set_num)|(index*4+k),(uint8_t *)(cac+(4*index+k)*64));
+      mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
     }
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
@@ -71,7 +71,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   else{
     int k=choose(ass);
     if(dirty[index*4+k]==1){
-      mem_write((tag[index*4+k]<<set_num)|(index*4+k),(uint8_t *)(cac+(4*index+k)*64));
+      mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
     }
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
