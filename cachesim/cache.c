@@ -3,7 +3,7 @@
 
 void mem_read(uintptr_t block_num, uint8_t *buf);
 void mem_write(uintptr_t block_num, const uint8_t *buf);
-
+extern uint32_t choose(uint32_t n);
 static uint64_t cycle_cnt = 0;
 static int ass;
 static int total;
@@ -52,7 +52,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //uint32_t data_out;
   int i;
   for(i=0;i<ass;i++){
-    if((tag[index*4+i]==tag_in)&&valid[index*4+i]) hit=1;break;
+    if((tag[index*4+i]==tag_in)&&valid[index*4+i]) {hit=1;break;}
   }
   if(hit==1){
     dirty[index*4+i]=1;
