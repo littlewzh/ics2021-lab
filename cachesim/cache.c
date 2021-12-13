@@ -29,6 +29,7 @@ uint32_t cache_read(uintptr_t addr) {
   for(i=0;i<ass;i++){
     if((tag[index*4+i]==tag_in)&&valid[index*4+i]) {hit=1;break;}
   }
+  printf("hit:%d\n",hit);
   if(hit==1){
     data_out=((uint32_t)cac[(4*index+i)*64+offset])|((uint32_t)cac[(4*index+i)*64+offset+1]<<8)|((uint32_t)cac[(4*index+i)*64+offset+2]<<16)|((uint32_t)cac[(4*index+i)*64+offset+3]<<24);
   }
