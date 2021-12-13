@@ -20,7 +20,7 @@ void cycle_increase(int n) { cycle_cnt += n; }
 // TODO: implement the following functions
 
 uint32_t cache_read(uintptr_t addr) {
-  /*int tag_in=addr>>(BLOCK_WIDTH+set_num);
+  int tag_in=addr>>(BLOCK_WIDTH+set_num);
   int index=(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
   int offset=addr&0x3c;
   int hit=0;
@@ -42,12 +42,12 @@ uint32_t cache_read(uintptr_t addr) {
     dirty[index*4+k]=0;
     data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
-  return data_out;*/
+  return data_out;
   return 0;
 }
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
-  /*int tag_in=addr>>(BLOCK_WIDTH+set_num);
+  int tag_in=addr>>(BLOCK_WIDTH+set_num);
   int index=(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
   int offset=addr&0x3c;
   int hit=0;
@@ -79,7 +79,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     cac[(4*index+k)*64+offset+3]=data&0xff000000>>24;
     //data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
-  //return data_out;*/
+  //return data_out;
 }
 
 void init_cache(int total_size_width, int associativity_width) {
