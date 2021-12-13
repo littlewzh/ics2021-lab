@@ -59,6 +59,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   for(i=0;i<ass;i++){
     if((tag[index*4+i]==tag_in)&&valid[index*4+i]) {hit=1;break;}
   }
+  printf("hit:%d\n",hit);
   if(hit==1){
     dirty[index*4+i]=1;
     cac[(4*index+i)*64+offset]=data&0xff;
