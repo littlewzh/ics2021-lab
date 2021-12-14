@@ -42,7 +42,7 @@ uint32_t cache_read(uintptr_t addr) {
   }
   else{
     
-    int k=choose(4);
+    int k=choose(3);
     if(dirty[index*4+k]==1){
       mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
 
