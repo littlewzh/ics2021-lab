@@ -12,17 +12,17 @@ static int ass;
 static int total;
 static int set_num;
 static int hang_num;
-static uint8_t cac[exp2(16)];
-static bool valid[exp2(16-BLOCK_WIDTH)];           //每行的有效位
-static uint32_t tag[exp2(16-BLOCK_WIDTH)];           //每行的标志位
-static bool dirty[exp2(16-BLOCK_WIDTH)];              //每行的dirty位
+static uint8_t cac[exp2(24)];
+static bool valid[exp2(24-BLOCK_WIDTH)];           //每行的有效位
+static uint32_t tag[exp2(24-BLOCK_WIDTH)];           //每行的标志位
+static bool dirty[exp2(24-BLOCK_WIDTH)];              //每行的dirty位
 void cycle_increase(int n) { cycle_cnt += n; }
 
 // TODO: implement the following functions
 
 uint32_t cache_read(uintptr_t addr) {
-  uint32_t addrin=addr&~0x3;
-  uint32_t tag_in=(BLOCK_WIDTH+set_num);
+  //uint32_t addrin=addr&~0x3;
+  uint32_t tag_in=addr>>(BLOCK_WIDTH+set_num);
   printf("0x%08x\n",tag_in);
   uint32_t index=((addr<<(64-BLOCK_WIDTH-set_num))>>(64-set_num));
   printf("%d\n",set_num);
@@ -47,7 +47,7 @@ uint32_t cache_read(uintptr_t addr) {
 
     }
     printf("dirty:%d\n",dirty[index*4+k]);
-    mem_read(addrin>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
+    mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
     tag[index*4+k]=tag_in;
     dirty[index*4+k]=0;
@@ -69,7 +69,7 @@ uint32_t cache_read(uintptr_t addr) {
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //uint32_t addr=addrin&~0x3;
-  uint32_t tag_in=(BLOCK_WIDTH+set_num);
+  uint32_t tag_in=addr>>(BLOCK_WIDTH+set_num);
   uint32_t index=((addr<<(64-BLOCK_WIDTH-set_num))>>(64-set_num));
   //printf("0x%08x\n",index);
   uint32_t offset=addr&0x3c;
