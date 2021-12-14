@@ -52,12 +52,16 @@ uint32_t cache_read(uintptr_t addr) {
     valid[index*4+k]=1;
     tag[index*4+k]=tag_in;
     dirty[index*4+k]=0;
+    printf("0x%02x\n",cac[(4*index+k)*64+offset]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+1]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+2]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+3]);
     data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
   //printf("data_out2:0x%08x\n",data_out2);
-  printf("data_out:0x%08x\n",data_out);
+  //printf("data_out:0x%08x\n",data_out);
   return data_out;
-  return 0;
+  //return 0;
 }
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
