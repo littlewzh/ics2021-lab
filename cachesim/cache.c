@@ -6,7 +6,7 @@ void mem_read(uintptr_t block_num, uint8_t *buf);
 void mem_write(uintptr_t block_num, const uint8_t *buf);
 //extern uint32_t choose(uint32_t n);
 static inline uint32_t choose(uint32_t n) { return rand() % n; }
-
+extern uint8_t mem[MEM_SIZE];
 static uint64_t cycle_cnt = 0;
 static int ass;
 static int total;
@@ -21,7 +21,7 @@ void cycle_increase(int n) { cycle_cnt += n; }
 // TODO: implement the following functions
 
 uint32_t cache_read(uintptr_t addr) {
-  //uint32_t addr=addrin&~0x3;
+  uint32_t addrin=addr&~0x3;
   uint32_t tag_in=addr>>12;
   uint32_t index=(addr&0xfff)>>6;//(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
   //printf("0x%08x\n",index);
@@ -29,6 +29,9 @@ uint32_t cache_read(uintptr_t addr) {
   printf("0x%08x\n",offset);
   int hit=0;
   uint32_t data_out;
+  uint32_t data_out2;
+  data_out2=(uint32_t)mem[addrin]|(uint32_t)mem[addrin+1]<<8|(uint32_t)mem[addrin+2]<<16|(uint32_t)mem[addrin+3]<<24;
+  
   int i;
   for(i=0;i<ass;i++){
     if((tag[index*4+i]==tag_in)&&valid[index*4+i]) {hit=1;break;}
@@ -51,6 +54,7 @@ uint32_t cache_read(uintptr_t addr) {
     dirty[index*4+k]=0;
     data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
+  printf("data_out2:0x%08x\n",data_out2);
   printf("data_out:0x%08x\n",data_out);
   return data_out;
   return 0;
