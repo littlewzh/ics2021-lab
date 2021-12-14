@@ -56,6 +56,10 @@ uint32_t cache_read(uintptr_t addr) {
     printf("0x%02x\n",cac[(4*index+k)*64+offset+1]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+2]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+3]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+4]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+5]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+6]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+7]);
     data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
   //printf("data_out2:0x%08x\n",data_out2);
