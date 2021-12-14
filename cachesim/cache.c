@@ -23,6 +23,7 @@ void cycle_increase(int n) { cycle_cnt += n; }
 uint32_t cache_read(uintptr_t addr) {
   uint32_t addrin=addr&~0x3;
   uint32_t tag_in=addr>>(BLOCK_WIDTH+set_num);
+  printf("0x%08x\n",tag_in);
   uint32_t index=((addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num));
   printf("%d\n",set_num);
   printf("0x%08x\n",index);
