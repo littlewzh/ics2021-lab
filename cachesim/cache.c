@@ -24,7 +24,7 @@ uint32_t cache_read(uintptr_t addr) {
   uint32_t addrin=addr&~0x3;
   uint32_t tag_in=addr>>(BLOCK_WIDTH+set_num);
   uint32_t index=(addr<<(32-BLOCK_WIDTH-set_num))>>(32-set_num);
-  //printf("0x%08x\n",index);
+  printf("0x%08x\n",index);
   uint32_t offset=addr&0x3c;
   printf("0x%08x\n",offset);
   int hit=0;
