@@ -103,6 +103,10 @@ void init_cache(int total_size_width, int associativity_width) {
   ass=exp2(associativity_width);                                  // the number of line for each set;
   set_num=total_size_width-BLOCK_WIDTH-associativity_width;  //组数
   hang_num=total_size_width-BLOCK_WIDTH;                   //行数
+  memset(cac,0,sizeof(cac));
+  memset(dirty,0,sizeof(dirty));
+  memset(valid,0,sizeof(valid));
+  memset(tag,0,sizeof(tag));
   //uint8_t cac[exp2(total_size_width)];
   //uint32_t path=exp2(associativity_width);
   //bool valid[exp2(total_size_width-BLOCK_WIDTH)];           //每行的有效位
