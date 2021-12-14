@@ -61,8 +61,8 @@ static void random_trace(void) {
     t.t.addr = choose(MEM_SIZE) & ~(t.t.len - 1);
     
     t.t.is_write = choose(2);
-    if (t.t.is_write) {t.data = rand();printf("write\n");}
-    else {printf("read\n");}
+    if (t.t.is_write) {t.data = rand();}//printf("write\n");}
+    //else {printf("read\n");}
     //printf("addr:0x%08x\n",t.t.addr);
     trace_exec(&t, true);
 
