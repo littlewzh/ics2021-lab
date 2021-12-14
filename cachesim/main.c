@@ -45,7 +45,7 @@ static void trace_exec(struct trace *t, bool is_check) {
     uint32_t ret = cpu_read(t->t.addr, t->t.len);
     if (is_check) {
       uint32_t ret_uncache = cpu_uncache_read(t->t.addr, t->t.len);
-      printf("cache:0x%08x\nuncache:0x%08x\n",ret,ret_uncache);
+      //printf("cache:0x%08x\nuncache:0x%08x\n",ret,ret_uncache);
       assert(ret == ret_uncache);
     }
   }
@@ -63,10 +63,9 @@ static void random_trace(void) {
     t.t.is_write = choose(2);
     if (t.t.is_write) {t.data = rand();printf("write\n");}
     else {printf("read\n");}
-    printf("addr:0x%08x\n",t.t.addr);
+    //printf("addr:0x%08x\n",t.t.addr);
     trace_exec(&t, true);
-    //t.t.is_write=!t.t.is_write;
-    //trace_exec(&t, true);
+
   }
 }
 
@@ -75,7 +74,7 @@ static void check_diff(void) {
   for (addr = 0; addr < MEM_SIZE; addr += 4) {
     uint32_t ret = cpu_read(addr, 4);
     uint32_t ret_uncache = cpu_uncache_read(addr, 4);
-    printf("cache:0x%08x\nuncache:0x%08x",ret,ret_uncache);
+    //printf("cache:0x%08x\nuncache:0x%08x",ret,ret_uncache);
     assert(ret == ret_uncache);
   }
 }
