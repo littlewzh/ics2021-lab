@@ -47,7 +47,7 @@ uint32_t cache_read(uintptr_t addr) {
       mem_write((tag[index*4+k]<<set_num)|index,(uint8_t *)(cac+(4*index+k)*64));
 
     }
-    //printf("reach here\n");
+    printf("dirty:%d\n",dirty[index*4+k]);
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(4*index+k)*64));
     valid[index*4+k]=1;
     tag[index*4+k]=tag_in;
