@@ -35,7 +35,7 @@ uint32_t cache_read(uintptr_t addr) {
   for(i=0;i<ass;i++){
     if((tag[index*ass+i]==tag_in)&&valid[index*ass+i]) {hit=1;break;}
   }
-  printf("hit:%d\n",hit);
+  //printf("hit:%d\n",hit);
   if(hit==1){
     data_out=((uint32_t)cac[(ass*index+i)*64+offset])|((uint32_t)cac[(ass*index+i)*64+offset+1]<<8)|((uint32_t)cac[(ass*index+i)*64+offset+2]<<16)|((uint32_t)cac[(ass*index+i)*64+offset+3]<<24);
   }
@@ -46,7 +46,7 @@ uint32_t cache_read(uintptr_t addr) {
       mem_write((tag[index*ass+k]<<set_num)|index,(uint8_t *)(cac+(ass*index+k)*64));
 
     }
-    printf("dirty:%d\n",dirty[index*4+k]);
+    //printf("dirty:%d\n",dirty[index*4+k]);
     mem_read(addr>>BLOCK_WIDTH,(uint8_t *)(cac+(ass*index+k)*64));
     valid[index*ass+k]=1;
     tag[index*ass+k]=tag_in;
@@ -82,7 +82,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   for(i=0;i<ass;i++){
     if((tag[index*ass+i]==tag_in)&&valid[index*ass+i]) {hit=1;break;}
   }
-  printf("hit:%d\n",hit);
+  //printf("hit:%d\n",hit);
   if(hit==1){
     dirty[index*ass+i]=1;
     *(uint32_t *)(cac+(ass*index+i)*64+offset)=(*(uint32_t *)(cac+(ass*index+i)*64+offset)&~wmask)|(data & wmask);
