@@ -65,6 +65,7 @@ static void random_trace(void) {
     else {printf("read\n");}
     printf("addr:0x%08x\n",t.t.addr);
     trace_exec(&t, true);
+    t.t.is_write=!t.t.is_write;
     trace_exec(&t, true);
   }
 }
