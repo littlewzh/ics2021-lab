@@ -22,9 +22,9 @@ void cycle_increase(int n) { cycle_cnt += n; }
 
 uint32_t cache_read(uintptr_t addr) {
   uint32_t addrin=addr&~0x3;
-  uint32_t tag_in=addr>>14;//(BLOCK_WIDTH+set_num);
+  uint32_t tag_in=(BLOCK_WIDTH+set_num);
   printf("0x%08x\n",tag_in);
-  uint32_t index=(addr&0x3fff)>>6;//((addr<<(64-BLOCK_WIDTH-set_num))>>(64-set_num));
+  uint32_t index=((addr<<(64-BLOCK_WIDTH-set_num))>>(64-set_num));
   printf("%d\n",set_num);
   printf("0x%08x\n",index);
   uint32_t offset=addr&0x3c;
@@ -69,8 +69,8 @@ uint32_t cache_read(uintptr_t addr) {
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //uint32_t addr=addrin&~0x3;
-  uint32_t tag_in=addr>>14;//(BLOCK_WIDTH+set_num);
-  uint32_t index=(addr&0x3fff)>>6;//((addr<<(64-BLOCK_WIDTH-set_num))>>(64-set_num));
+  uint32_t tag_in=(BLOCK_WIDTH+set_num);
+  uint32_t index=((addr<<(64-BLOCK_WIDTH-set_num))>>(64-set_num));
   //printf("0x%08x\n",index);
   uint32_t offset=addr&0x3c;
   //printf("0x%08x\n",offset);
