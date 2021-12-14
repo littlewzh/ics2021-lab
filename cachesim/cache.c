@@ -86,9 +86,9 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   if(hit==1){
     dirty[index*4+i]=1;
     cac[(4*index+i)*64+offset]=data&0xff;
-    cac[(4*index+i)*64+offset+1]=data&0xff00>>8;
-    cac[(4*index+i)*64+offset+2]=data&0xff0000>>16;
-    cac[(4*index+i)*64+offset+3]=data&0xff000000>>24;
+    cac[(4*index+i)*64+offset+1]=(data&0xff00)>>8;
+    cac[(4*index+i)*64+offset+2]=(data&0xff0000)>>16;
+    cac[(4*index+i)*64+offset+3]=(data&0xff000000)>>24;
     //data_out=((uint32_t)cac[(4*index+i)*64+offset])|((uint32_t)cac[(4*index+i)*64+offset+1]<<8)|((uint32_t)cac[(4*index+i)*64+offset+2]<<16)|((uint32_t)cac[(4*index+i)*64+offset+3]<<24);
   }
   else{
@@ -103,9 +103,9 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     dirty[index*4+k]=1;
     tag[index*4+k]=tag_in;
     cac[(4*index+k)*64+offset]=data&0xff;
-    cac[(4*index+k)*64+offset+1]=data&0xff00>>8;
-    cac[(4*index+k)*64+offset+2]=data&0xff0000>>16;
-    cac[(4*index+k)*64+offset+3]=data&0xff000000>>24;
+    cac[(4*index+k)*64+offset+1]=(data&0xff00)>>8;
+    cac[(4*index+k)*64+offset+2]=(data&0xff0000)>>16;
+    cac[(4*index+k)*64+offset+3]=(data&0xff000000)>>24;
     //data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
   //return data_out;
