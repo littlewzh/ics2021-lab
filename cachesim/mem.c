@@ -30,5 +30,5 @@ uint32_t mem_uncache_read(uintptr_t addr) {
 
 void mem_uncache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t *p = (void *)mem_diff + (addr & ~0x3);
-  *p = data;//(*p & ~wmask) | (data & wmask);
+  *p = (*p & ~wmask) | (data & wmask);
 }
