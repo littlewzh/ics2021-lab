@@ -12,10 +12,10 @@ static int ass;
 static int total;
 static int set_num;
 static int hang_num;
-static uint8_t cac[exp2(14)];
-static bool valid[exp2(14-BLOCK_WIDTH)];           //每行的有效位
-static uint32_t tag[exp2(14-BLOCK_WIDTH)];           //每行的标志位
-static bool dirty[exp2(14-BLOCK_WIDTH)];              //每行的dirty位
+static uint8_t cac[exp2(16)];
+static bool valid[exp2(16-BLOCK_WIDTH)];           //每行的有效位
+static uint32_t tag[exp2(16-BLOCK_WIDTH)];           //每行的标志位
+static bool dirty[exp2(16-BLOCK_WIDTH)];              //每行的dirty位
 void cycle_increase(int n) { cycle_cnt += n; }
 
 // TODO: implement the following functions
@@ -29,9 +29,6 @@ uint32_t cache_read(uintptr_t addr) {
   printf("0x%08x\n",offset);
   int hit=0;
   uint32_t data_out;
-  //uint32_t data_out2;
-  //data_out2=(uint32_t)mem[addrin]|(uint32_t)mem[addrin+1]<<8|(uint32_t)mem[addrin+2]<<16|(uint32_t)mem[addrin+3]<<24;
-  
   int i;
   for(i=0;i<ass;i++){
     if((tag[index*4+i]==tag_in)&&valid[index*4+i]) {hit=1;break;}
@@ -42,7 +39,7 @@ uint32_t cache_read(uintptr_t addr) {
   }
   else{
     
-    int k=choose(4);
+    int k=choose(ass);
     if(dirty[index*4+k]==1){
       mem_write((tag[index*4+k]<<6)|index,(uint8_t *)(cac+(4*index+k)*64));
 
