@@ -6,7 +6,7 @@ void mem_read(uintptr_t block_num, uint8_t *buf);
 void mem_write(uintptr_t block_num, const uint8_t *buf);
 //extern uint32_t choose(uint32_t n);
 static inline uint32_t choose(uint32_t n) { return rand() % n; }
-extern uint8_t mem[MEM_SIZE];
+//extern uint8_t mem[MEM_SIZE];
 static uint64_t cycle_cnt = 0;
 static int ass;
 static int total;
