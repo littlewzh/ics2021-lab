@@ -52,14 +52,14 @@ uint32_t cache_read(uintptr_t addr) {
     valid[index*4+k]=1;
     tag[index*4+k]=tag_in;
     dirty[index*4+k]=0;
-    printf("0x%02x\n",cac[(4*index+k)*64+offset]);
+    /*printf("0x%02x\n",cac[(4*index+k)*64+offset]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+1]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+2]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+3]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+4]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+5]);
     printf("0x%02x\n",cac[(4*index+k)*64+offset+6]);
-    printf("0x%02x\n",cac[(4*index+k)*64+offset+7]);
+    printf("0x%02x\n",cac[(4*index+k)*64+offset+7]);*/
     data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
   //printf("data_out2:0x%08x\n",data_out2);
@@ -78,6 +78,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   int hit=0;
   uint32_t data_in;
   //uint32_t data_out;
+ //*p = (*p & ~wmask) | (data & wmask);
   int i;
   for(i=0;i<ass;i++){
     if((tag[index*4+i]==tag_in)&&valid[index*4+i]) {hit=1;break;}
@@ -85,10 +86,11 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   printf("hit:%d\n",hit);
   if(hit==1){
     dirty[index*4+i]=1;
-    cac[(4*index+i)*64+offset]=data&0xff;
+    *(uint32_t *)(cac+(4*index+i)*64+offset)=(*(uint32_t *)(cac+(4*index+i)*64+offset)&~wmask)|(data & wmask);
+    /*cac[(4*index+i)*64+offset]=data&0xff;
     cac[(4*index+i)*64+offset+1]=(data&0xff00)>>8;
     cac[(4*index+i)*64+offset+2]=(data&0xff0000)>>16;
-    cac[(4*index+i)*64+offset+3]=(data&0xff000000)>>24;
+    cac[(4*index+i)*64+offset+3]=(data&0xff000000)>>24;*/
     //data_out=((uint32_t)cac[(4*index+i)*64+offset])|((uint32_t)cac[(4*index+i)*64+offset+1]<<8)|((uint32_t)cac[(4*index+i)*64+offset+2]<<16)|((uint32_t)cac[(4*index+i)*64+offset+3]<<24);
   }
   else{
@@ -102,10 +104,11 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     valid[index*4+k]=1;
     dirty[index*4+k]=1;
     tag[index*4+k]=tag_in;
-    cac[(4*index+k)*64+offset]=data&0xff;
+    *(uint32_t *)(cac+(4*index+k)*64+offset)=(*(uint32_t *)(cac+(4*index+k)*64+offset)&~wmask)|(data & wmask);
+    /*cac[(4*index+k)*64+offset]=data&0xff;
     cac[(4*index+k)*64+offset+1]=(data&0xff00)>>8;
     cac[(4*index+k)*64+offset+2]=(data&0xff0000)>>16;
-    cac[(4*index+k)*64+offset+3]=(data&0xff000000)>>24;
+    cac[(4*index+k)*64+offset+3]=(data&0xff000000)>>24;*/
     //data_out=((uint32_t)cac[(4*index+k)*64+offset])|((uint32_t)cac[(4*index+k)*64+offset+1]<<8)|((uint32_t)cac[(4*index+k)*64+offset+2]<<16)|((uint32_t)cac[(4*index+k)*64+offset+3]<<24);
   }
   //return data_out;
